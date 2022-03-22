@@ -1,7 +1,7 @@
 {% if taskList %}
     <ul>
     {% for task in taskList %}
-        <li><a href="/todoBackend/{{task.id}}">{{ task.name }}</a></li>
+        <li><a href="{% url 'todoBackend:edit' task.id %}">{{ task.name }}</a></li>
     {% endfor %}
     </ul>
 
