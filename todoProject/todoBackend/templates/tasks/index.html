@@ -1,0 +1,11 @@
+{% if taskList %}
+    <ul>
+    {% for task in taskList %}
+        <li><a href="/todoBackend/{{task.id}}">{{ task.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% else %}
+    <p>There are no task yet</p>
+
+{% endif %}

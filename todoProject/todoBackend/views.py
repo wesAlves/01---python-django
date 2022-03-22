@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 
 from .models import TodoList
@@ -6,8 +5,13 @@ from .models import TodoList
 # Create your views here.
 def index(request):
     taskList = TodoList.objects.all()
+    context = {
+        'taskList':taskList
+    }
 
-    return HttpResponse(taskList.name)
+    return render(request, 'tasks/index.html', context )
 
 def detail(request, TodoList_id):
-    return HttpResponse({"You are looking at this task %s" %TodoList_id})
+    context = {"taskList": ""}
+
+    return render(request, 'tasks/index.html', context)
