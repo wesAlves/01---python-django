@@ -26,7 +26,13 @@ def edit(request, TodoList_id):
         form = AddTask(request.POST)
 
         if form.is_valid():
-            print(form)
+            # print(form.data['task_description'])
+
+            task.name = form.data['task_name']
+            task.description = form.data['task_description']
+
+            task.save()
+
             return HttpResponseRedirect('/todoBackend/%s' %(TodoList_id))
 
     else:
