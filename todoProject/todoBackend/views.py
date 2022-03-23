@@ -21,10 +21,18 @@ def detail(request, TodoList_id):
 
 def edit(request, TodoList_id):
     task = get_object_or_404(TodoList, pk=TodoList_id)
+    
+    if request.method == 'POST':
+        form = AddTask(request.POST)
 
-    task.description = request.POST['description.value']
+        if form.is_valid():
+            print(form)
+            return HttpResponseRedirect('/todoBackend/%s' %(TodoList_id))
 
-    # task.save()
+    else:
+        form = AddTask()
+    
+    return render(request, 'tasks/detail.html', {"task":task, "form":form })
+    
 
-    return render(request, 'tasks/detail.html', {'task':task})
-    # return HttpResponseRedirect(reverse('todoBackend:edit', args=(task.id,)))
+

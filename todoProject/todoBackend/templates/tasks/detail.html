@@ -6,17 +6,10 @@
     </li>
 </ul>
 
-<form action="{% url 'todoBackend:edit' task.id %}" method='post'>
+<form action="{% url 'todoBackend:edit' task.id %}" method='post' name="changeDescription">
 
     {% csrf_token %}
-    {% comment %} {{ form }} {% endcomment %}
-    <fieldset>
-        <legend><h1>{{task.name}}</h1></legend>
-        {% if error_message %}<p><strong>{{error_message}}</strong></p>
-        {% endif %}
-        <label for='description'>Description: <label>
-        <input type='text' name='description'value={{description_var}}>
-    </fieldset> 
-    <input type='submit' value='Edit'>
+    {{ form }}
+        <input type='submit' value='Edit'>
 
 </form>
