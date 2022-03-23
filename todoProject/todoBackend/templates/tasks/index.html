@@ -1,11 +1,24 @@
 {% if taskList %}
-    <ul>
-    {% for task in taskList %}
-        <li><a href="{% url 'todoBackend:edit' task.id %}">{{ task.name }}</a></li>
-    {% endfor %}
-    </ul>
+<ul>
+  {% for task in taskList %}
+  <li><a href="{% url 'todoBackend:edit' task.id %}">{{ task.name }}</a></li>
+  {% endfor %}
+</ul>
 
 {% else %}
-    <p>There are no task yet</p>
-
+<p>There are no task yet</p>
 {% endif %}
+
+<div>Add a new Task</div>
+
+<form action="{% url 'todoBackend:index' %}" method="post" name="changeDescription">
+  {% csrf_token %} {% comment %} {{ form }} {% endcomment %}
+  <div>{{form.name.label}} {{form.name}}</div>
+  <div>{{form.description.label}} {{form.description}}</div>
+  <div>
+    {{form.is_done.label}} {% for radio in form.is_done %} {{radio}} 
+    {% endfor %}
+  </div>
+
+  <input type="submit" value="Edit" />
+</form>

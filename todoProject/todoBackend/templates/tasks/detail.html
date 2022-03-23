@@ -1,16 +1,21 @@
 <h1>{{task.name}}</h1>
 
 <ul>
-    <li>
-        {{task.description}}
-    </li>
+  <li>{{task.description}}</li>
 </ul>
 
-<form action="{% url 'todoBackend:edit' task.id %}" method='post' name="changeDescription">
+<form
+  action="{% url 'todoBackend:edit' task.id %}"
+  method="post"
+  name="changeDescription"
+>
+  {% csrf_token %} {% comment %} {{ form }} {% endcomment %}
+  <div>{{form.task_name.label}} {{form.task_name}}</div>
+  <div>{{form.task_description.label}} {{form.task_description}}</div>
+  <div>
+    {{form.is_done.label}} {% for radio in form.is_done %} {{radio}} 
+    {% endfor %}
+  </div>
 
-    {% csrf_token %}
-    {{ form }}
-    
-        <input type='submit' value='Edit'>
-
+  <input type="submit" value="Edit" />
 </form>
