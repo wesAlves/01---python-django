@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.urls import is_valid_path, reverse
 
 from .models import TodoList
 from .forms.taskForm import AddTask
@@ -11,14 +10,17 @@ def index(request):
         
     if request.method=='POST':
         form = AddTask(request.POST)
+        print("we are posting on the db")
 
         if form.is_valid():
-            # print(form.data)
             TodoList.objects.create(**form.cleaned_data)
-            TodoList.save()
+            
+            todo_list = TodoList()
+
+            todo_list.save
 
 
-            return HttpResponseRedirect('/todoBackend/')
+            return HttpResponseRedirect('')
 
     else:
         form = AddTask()

@@ -12,13 +12,23 @@
 <div>Add a new Task</div>
 
 <form action="{% url 'todoBackend:index' %}" method="post" name="changeDescription">
-  {% csrf_token %} {% comment %} {{ form }} {% endcomment %}
-  <div>{{form.name.label}} {{form.name}}</div>
+  {% csrf_token %} 
+  {{ form }}
+
+  {% comment %} <div>{{form.name.label}} {{form.name}}</div>
   <div>{{form.description.label}} {{form.description}}</div>
   <div>
     {{form.is_done.label}} {% for radio in form.is_done %} {{radio}} 
     {% endfor %}
   </div>
+  <div>
+    {{form.created_at.label}}
+    {{form.created_at}}
+  </div>
+  <div>
+    {{form.deadline_date.label}}
+    {{form.deadline_date}}
+  </div> {% endcomment %}
 
-  <input type="submit" value="Edit" />
+  <input type="submit" value="Create" />
 </form>
