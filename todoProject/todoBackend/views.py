@@ -41,19 +41,24 @@ def edit(request, TodoList_id):
         form = AddTask(request.POST)
 
         if form.is_valid():
-            # print(form.data['task_description'])
-
-            task.name = form.data['task_name']
-            task.description = form.data['task_description']
+            task.name = form.data['name']
+            task.description = form.data['description']
+            task.is_done = form.data['is_done']
 
             task.save()
 
             return HttpResponseRedirect('/todoBackend/%s' %(TodoList_id))
 
     else:
-        form = AddTask()
+        form = AddTask(instance=task)
     
     return render(request, 'tasks/detail.html', {"task":task, "form":form })
     
 
+def delete(request, TodoList_id):
+    task =  get_object_or_404(TodoList, pk=TodoList_id)
+
+    task.delete()
+
+    return HttpResponseRedirect('/todoBackend/')
 
