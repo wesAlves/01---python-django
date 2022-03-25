@@ -4,14 +4,24 @@
   <li>{{task.description}}</li>
 </ul>
 
-<form
-  action="{% url 'todoBackend:edit' task.id %}"
-  method="post"
-  name="changeDescription"
+{% comment %} <form
+action="{% url 'todoBackend:edit' task.id %}"
+method="post"
+name="changeDescription"
 >
-  {% csrf_token %} 
-  {{ form.as_p }}
+{% csrf_token %} 
+{{ form.as_p }}
 
-  <input type="submit" value="Edit" />
-  <input type="submit" value="Delete" />
-</form>
+<input type="submit" value="Edit" />
+</form> {% endcomment %}
+
+
+{% comment %} <form
+action="{% url 'todoBackend:delete' task.id %}"
+method="post"
+name="delete"
+> {% endcomment %}
+{% csrf_token %} 
+<a href="{% url 'todoBackend:delete' task.id%}">Delete</a>
+  {% comment %} <input type="submit" value="Delete" /> {% endcomment %}
+{% comment %} </form> {% endcomment %}

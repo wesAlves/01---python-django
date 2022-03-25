@@ -55,7 +55,10 @@ def edit(request, TodoList_id):
     return render(request, 'tasks/detail.html', {"task":task, "form":form })
     
 
-# def delete(request, TodoList_id):
-#     task =  get_object_or_404(TodoList, pk=TodoList_id)
+def delete(request, TodoList_id):
+    task =  get_object_or_404(TodoList, pk=TodoList_id)
 
-#     if request.method == "D"
+    task.delete()
+
+    return HttpResponseRedirect('/todoBackend/')
+
